@@ -1,0 +1,30 @@
+<project name="Quizzer" basedir="." default="deploy">
+
+	<property name="context.name" value="Quizzer"/>
+	<property name="deploy.dir" value="/Applications/XAMPP/xamppfiles/htdocs/app/${context.name}"/>
+
+    <target name="help">
+ 		<echo>ant clean</echo>
+ 		<echo>ant deploy</echo>
+	</target>
+
+    <target name="clean">
+ 		<echo>${deploy.dir}</echo>
+        <delete dir="${deploy.dir}"/>
+        <mkdir dir="${deploy.dir}"/>
+        <copy todir="${deploy.dir}">
+		    <fileset dir="${basedir}" includes="**/*.php,**/*.css, **/*.js"/>
+  		</copy>
+  		
+  		<exec executable="open">
+		    <arg value="-a"/>
+		    <arg value="safari"/>
+		    <arg value="http://localhost/app/${context.name}/"/>
+	    </exec>
+         
+     </target>
+
+    <target name="deploy" depends="clean">
+     </target>
+
+</project>
