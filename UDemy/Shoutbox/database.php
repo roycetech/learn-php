@@ -1,6 +1,6 @@
-<?php
 
-$mysqli = new mysqli('localhost', 'root', 'qe9fUrDdSqPS6WzH', 'shoutit');
+<?php
+$mysqli = new mysqli('localhost', $dbusername, $dbpassword, 'shoutit');
 
 // $con  = mysqli_connect('localhost', 'root', 'qe9fUrDdSqPS6WzH', 'shoutit');
 
