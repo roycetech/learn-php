@@ -1,3 +1,15 @@
+<?php 
+
+include 'database.php';
+session_start();
+$_SESSION['score'] = 0;
+
+
+$query_all = "select * from question";
+$result_total = $mysqli->query($query_all) or die($mysqli->error . __LINE__ );
+$total = $result_total->num_rows;
+	
+?>
 <!doctype html>
 
 <html>
@@ -16,11 +28,11 @@
     <main>
     <div class="container">
       <h2>Test Your PHP Knowledge</h2>
-      <p>T/his is a multiple choice quiz to test your knowledge of PHP</p>
+      <p>This is a multiple choice quiz to test your knowledge of PHP</p>
       <ul>
-        <li><strong>Number of questions: </strong>5</li>
+        <li><strong>Number of questions: </strong><?= $total ?></li>
         <li><strong>Type: </strong>Multiple Choice</li>
-        <li><strong>Estimated Time: </strong>4 Minutes</li>
+        <li><strong>Estimated Time: </strong><?= $total * 0.5 ?> Minute(s)</li>
       </ul>
       <a href="question.php?n=1" class="start">Start Quiz</a>
     </div>

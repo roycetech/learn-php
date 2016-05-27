@@ -1,3 +1,27 @@
+<?php 
+
+session_start();
+
+include 'database.php';
+
+$question_number = $_GET['n'];
+
+$query = "select * from question where question_number = $question_number";
+$result = $mysqli->query($query) or die($mysqli->error . __LINE__ );
+$question = $result->fetch_assoc();
+
+
+$query_choice = "select * from choice where question_number = $question_number";
+$result_choice = $mysqli->query($query_choice) or die($mysqli->error . __LINE__);
+
+$query_total = "select * from question";
+$result_total = $mysqli->query($query_total) or die($mysqli->error . __LINE__ );
+$total = $result_total->num_rows;
+
+
+?>
+
+
 <!doctype html>
 
 <html>
@@ -15,18 +39,18 @@
 
     <main>
     <div class="container">
-      <div class="current">Question 1 of 5</div>
+      <div class="current">Question <?= $question_number ?> of <?= $total ?></div>
       <p class="question">
-        What does PHP stand for?
+      <?= $question['text'] ?>
       </p>
       <form method="post" action="process.php">
         <ul class="choices">
-          <li><input name="choice" type="radio" value="1">PHP: Hypertext Preprocessor</li>
-          <li><input name="choice" type="radio" value="1">Prvate Home Page</li>
-          <li><input name="choice" type="radio" value="1">Personal Home Page</li>
-          <li><input name="choice" type="radio" value="1">Personal Hypertext Preprocessor</li>
+        <?php while ($row = $result_choice->fetch_assoc()) { ?>
+          <li><input name="choice" type="radio" value="<?= $row['is_correct'] ?>"><?= $row['text'] ?></li>
+        <?php } ?>
         </ul>
-        <input type="submit" value="submit" />
+        <input name="submit" type="submit" value="Submit" />
+        <input type="hidden" name="number" value="<?= $_GET['n'] ?>" />
       </form>
     </div>
     </main>
