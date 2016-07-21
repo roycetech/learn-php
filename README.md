@@ -14,7 +14,7 @@ Auto-Building on file change
 
 1. Open the project properties
 2. Go to `Builders`
-3. Add an Ant Builder
-4. Select the Ant Builder and click the `Edit` button
-5. Go to `Targets` and click the `Set Targets...` for the `Auto Build`
+3. Add an Ant Builder and name it `<project_name> Ant Builder` because this must be unique in the workspace.
+4. Browse for the build file.
+5. Go to `Targets` subtab and click the `Set Targets...` for the `Auto Build`
 6. Check the `build` and accept all dialogs.
