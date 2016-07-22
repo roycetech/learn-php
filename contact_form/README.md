@@ -2,9 +2,11 @@ This project is used to POC the email notification via contact form.
 
 Steps to run:
 
-1. Create `config.php` based on the temple to customize addresses
+1. Create `config.php` based on the template to customize sensitive data.
 2. Use `mailme.php` to submit an email to a predetermined address upon page visit.
 3. Upload `contact.php` and `submit.php` on the web server to test.
+
+
 
 Issues:
 -------
