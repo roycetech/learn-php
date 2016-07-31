@@ -1,0 +1,30 @@
+<project name="page_view" basedir="." default="help">
+
+	<property name="context.name" value="${ant.project.name}"/>
+	<property name="deploy.dir" value="/Applications/XAMPP/xamppfiles/htdocs/app/${context.name}"/>
+
+    <target name="help">
+ 		<echo>ant clean</echo>
+ 		<echo>ant deploy</echo>
+	</target>
+
+    <target name="clean">
+        <delete dir="${deploy.dir}"/>
+     </target>
+
+    <target name="build">
+        <mkdir dir="${deploy.dir}"/>
+        <copy todir="${deploy.dir}">
+		    <fileset dir="${basedir}" includes="**/*.html, **/*.woff*, **/*.php, **/*.css, **/*.js, **/*.png, **/*.jpg"/>
+  		</copy>
+    </target>
+
+    <target name="launch" depends="build">
+  		<exec executable="open">
+		    <arg value="-a"/>
+		    <arg value="safari"/>
+		    <arg value="http://localhost/app/${context.name}/page_counter.php"/>
+	    </exec>
+     </target>
+
+</project>
